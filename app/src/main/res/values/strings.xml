@@ -4,6 +4,7 @@
     </string>
     <string name="frame_animation_title">Покадровая анимация (устар.)</string>
     <string name="property_animation_title">Property Animation (Animator)\n(since Android 3.0)</string>
+    <string name="vector_animation_title">Vector animation</string>
     <string name="alpha_description"><![CDATA[<- Alpha]]></string>
     <string name="scale_description"><![CDATA[<- Scale]]></string>
     <string name="translate"><![CDATA[<- Translate]]></string>

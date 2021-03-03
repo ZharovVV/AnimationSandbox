@@ -13,12 +13,14 @@ class MainFragment : Fragment() {
     private val tweenAnimationExampleFragment = TweenAnimationExampleFragment()
     private val frameAnimationExampleFragment = FrameAnimationExampleFragment()
     private val propertyAnimationExampleFragment = PropertyAnimationExampleFragment()
+    private val vectorAnimationExampleFragment = VectorAnimationExampleFragment()
 
     private lateinit var rootContainer: ViewGroup
 
     private lateinit var toTweenAnimationsButton: Button
     private lateinit var toFrameAnimationButton: Button
     private lateinit var toPropertyAnimationButton: Button
+    private lateinit var toVectorAnimationButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,54 +47,48 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         toTweenAnimationsButton = view.findViewById(R.id.tween_animation)
         toTweenAnimationsButton.setOnClickListener {
-            requireFragmentManager().beginTransaction()
-                .setCustomAnimations(
-                    R.animator.animation_enter,
-                    R.animator.animation_exit,
-                    R.animator.animation_pop_enter,
-                    R.animator.animation_pop_exit
-                )
-                .replace(
-                    rootContainer.id,
-                    tweenAnimationExampleFragment,
-                    "tweenAnimationExampleFragment"
-                )
-                .addToBackStack(null)
-                .commit()
+            transitionTo(
+                tweenAnimationExampleFragment,
+                "tweenAnimationExampleFragment"
+            )
         }
         toFrameAnimationButton = view.findViewById(R.id.frame_animation)
         toFrameAnimationButton.setOnClickListener {
-            requireFragmentManager().beginTransaction()
-                .setCustomAnimations(
-                    R.animator.animation_enter,
-                    R.animator.animation_exit,
-                    R.animator.animation_pop_enter,
-                    R.animator.animation_pop_exit
-                )
-                .replace(
-                    rootContainer.id,
-                    frameAnimationExampleFragment,
-                    "frameAnimationExampleFragment"
-                )
-                .addToBackStack(null)
-                .commit()
+            transitionTo(
+                frameAnimationExampleFragment,
+                "frameAnimationExampleFragment"
+            )
         }
         toPropertyAnimationButton = view.findViewById(R.id.property_animation)
         toPropertyAnimationButton.setOnClickListener {
-            requireFragmentManager().beginTransaction()
-                .setCustomAnimations(
-                    R.animator.animation_enter,
-                    R.animator.animation_exit,
-                    R.animator.animation_pop_enter,
-                    R.animator.animation_pop_exit
-                )
-                .replace(
-                    rootContainer.id,
-                    propertyAnimationExampleFragment,
-                    "propertyAnimationExampleFragment"
-                )
-                .addToBackStack(null)
-                .commit()
+            transitionTo(
+                propertyAnimationExampleFragment,
+                "propertyAnimationExampleFragment"
+            )
         }
+        toVectorAnimationButton = view.findViewById(R.id.vector_animation)
+        toVectorAnimationButton.setOnClickListener {
+            transitionTo(
+                vectorAnimationExampleFragment,
+                "vectorAnimationExampleFragment"
+            )
+        }
+    }
+
+    private fun transitionTo(fragment: Fragment, tag: String?) {
+        requireFragmentManager().beginTransaction()
+            .setCustomAnimations(
+                R.animator.animation_enter,
+                R.animator.animation_exit,
+                R.animator.animation_pop_enter,
+                R.animator.animation_pop_exit
+            )
+            .replace(
+                rootContainer.id,
+                fragment,
+                tag
+            )
+            .addToBackStack(null)
+            .commit()
     }
 }
