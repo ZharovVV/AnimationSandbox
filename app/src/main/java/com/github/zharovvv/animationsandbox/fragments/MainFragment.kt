@@ -1,5 +1,6 @@
 package com.github.zharovvv.animationsandbox.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ class MainFragment : Fragment() {
     private val frameAnimationExampleFragment = FrameAnimationExampleFragment()
     private val propertyAnimationExampleFragment = PropertyAnimationExampleFragment()
     private val vectorAnimationExampleFragment = VectorAnimationExampleFragment()
+    private val transitionAnimationExampleFragment = TransitionAnimationExampleFragment()
 
     private lateinit var rootContainer: ViewGroup
 
@@ -21,13 +23,14 @@ class MainFragment : Fragment() {
     private lateinit var toFrameAnimationButton: Button
     private lateinit var toPropertyAnimationButton: Button
     private lateinit var toVectorAnimationButton: Button
+    private lateinit var toTransitionAnimationButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         /**
          * Вызов этого метода меняет жизненный цикл фрагмента, а именно, он
          * убирает из него вызовы onCreate и onDestroy при пересоздании Activity. Теперь
-         * при пересоздании Activity этот фрагмент не будет уничтожен, и все его поля
+         * при _пересоздании_ Activity этот фрагмент не будет уничтожен, и все его поля
          * сохранят свои значения. Но при этом остальные методы из жизненного цикла
          * Fragment будут вызваны, так что не возникнет проблем с заменой ресурсов в
          * зависимости от конфигурации.
@@ -47,35 +50,29 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         toTweenAnimationsButton = view.findViewById(R.id.tween_animation)
         toTweenAnimationsButton.setOnClickListener {
-            transitionTo(
-                tweenAnimationExampleFragment,
-                "tweenAnimationExampleFragment"
-            )
+            transitionTo(tweenAnimationExampleFragment)
         }
         toFrameAnimationButton = view.findViewById(R.id.frame_animation)
         toFrameAnimationButton.setOnClickListener {
-            transitionTo(
-                frameAnimationExampleFragment,
-                "frameAnimationExampleFragment"
-            )
+            transitionTo(frameAnimationExampleFragment)
         }
         toPropertyAnimationButton = view.findViewById(R.id.property_animation)
         toPropertyAnimationButton.setOnClickListener {
-            transitionTo(
-                propertyAnimationExampleFragment,
-                "propertyAnimationExampleFragment"
-            )
+            transitionTo(propertyAnimationExampleFragment)
         }
         toVectorAnimationButton = view.findViewById(R.id.vector_animation)
         toVectorAnimationButton.setOnClickListener {
-            transitionTo(
-                vectorAnimationExampleFragment,
-                "vectorAnimationExampleFragment"
-            )
+            transitionTo(vectorAnimationExampleFragment)
+        }
+        toTransitionAnimationButton = view.findViewById(R.id.transition_animation)
+        toTransitionAnimationButton.setOnClickListener {
+            transitionTo(transitionAnimationExampleFragment)
         }
     }
 
-    private fun transitionTo(fragment: Fragment, tag: String?) {
+    @SuppressLint("DefaultLocale")
+    private fun transitionTo(fragment: Fragment) {
+        val fragmentTag: String = fragment.javaClass.simpleName.decapitalize()
         requireFragmentManager().beginTransaction()
             .setCustomAnimations(
                 R.animator.animation_enter,
@@ -86,7 +83,7 @@ class MainFragment : Fragment() {
             .replace(
                 rootContainer.id,
                 fragment,
-                tag
+                fragmentTag
             )
             .addToBackStack(null)
             .commit()

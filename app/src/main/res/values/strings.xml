@@ -10,4 +10,5 @@
     <string name="translate"><![CDATA[<- Translate]]></string>
     <string name="rotate"><![CDATA[<- Rotate]]></string>
     <string name="combination"><![CDATA[<- Combination]]></string>
+    <string name="transition_animation_title">Transition API</string>
 </resources>

@@ -34,10 +34,10 @@ class VectorAnimationExampleFragment : Fragment() {
                 IntArray(
                     1
                 ) {
-                    android.R.attr.state_checked * if (isChecked) {
-                        1
+                    if (isChecked) {
+                        android.R.attr.state_checked
                     } else {
-                        -1
+                        -100500
                     }
                 }, true
             )

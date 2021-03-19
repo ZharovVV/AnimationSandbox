@@ -4,12 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <TextView
-        android:id="@+id/vector_animation_title"
+        android:id="@+id/transition_animation_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="@string/vector_animation_title"
+        android:text="@string/transition_animation_title"
         android:textColor="@color/purple_500"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -17,18 +18,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/drawer"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:contentDescription="@null"
-        android:padding="16dp"
-        android:scaleType="fitCenter"
+    <FrameLayout
+        android:id="@+id/scene_root"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/asl_pathmorph_drawer"
-        app:tint="@color/teal_700" />
+        app:layout_constraintTop_toBottomOf="@id/transition_animation_title" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
