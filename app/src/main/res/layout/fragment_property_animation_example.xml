@@ -25,7 +25,8 @@
         android:background="@color/purple_200"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/property_animation_title" />
+        app:layout_constraintTop_toBottomOf="@id/property_animation_title"
+        android:contentDescription="@null" />
 
     <ImageView
         android:id="@+id/test_image_vew"
@@ -35,7 +36,20 @@
         android:background="@color/purple_200"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/image_view_property_animation" />
+        app:layout_constraintTop_toBottomOf="@id/image_view_property_animation"
+        android:contentDescription="@null" />
+
+    <com.github.zharovvv.animationsandbox.views.CustomView
+        android:id="@+id/custom_view"
+        android:layout_width="32dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/test_image_vew"
+        app:piv_border_thickness="8dp"
+        app:piv_inside_color="@color/teal_200"
+        app:piv_out_border_color="@color/purple_500" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

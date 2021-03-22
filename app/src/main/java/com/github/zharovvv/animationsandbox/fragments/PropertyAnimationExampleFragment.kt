@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent.ACTION_DOWN
@@ -12,8 +13,10 @@ import android.view.MotionEvent.ACTION_MOVE
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.ViewAnimator
 import androidx.fragment.app.Fragment
 import com.github.zharovvv.animationsandbox.R
+import com.github.zharovvv.animationsandbox.views.CustomView
 
 class PropertyAnimationExampleFragment : Fragment() {
 
@@ -22,6 +25,8 @@ class PropertyAnimationExampleFragment : Fragment() {
     private lateinit var rotateValueAnimator: ValueAnimator
 
     private lateinit var testImageView: ImageView
+
+    private lateinit var customView: CustomView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -115,6 +120,19 @@ class PropertyAnimationExampleFragment : Fragment() {
             } else {
                 rotateValueAnimator.start()
             }
+        }
+
+        customView = view.findViewById(R.id.custom_view)
+        val customViewAnimator = ValueAnimator.ofFloat(0f, 100f)
+            .apply {
+                duration = 0
+                addUpdateListener {
+                    customView.progress = it.animatedValue as Float
+                    customView.invalidate()
+                }
+            }
+        customView.setOnClickListener {
+            customViewAnimator.start()
         }
     }
 
