@@ -87,6 +87,7 @@ class PropertyAnimationExampleFragment : Fragment() {
         testImageView = view.findViewById(R.id.test_image_vew)
         var touchX = 0.0f
         var touchY = 0.0f
+        var lastTouchId: Int? = null
         testImageView.setOnTouchListener { v, event ->
             when (event.action) {
                 ACTION_DOWN -> {
@@ -125,7 +126,7 @@ class PropertyAnimationExampleFragment : Fragment() {
         customView = view.findViewById(R.id.custom_view)
         val customViewAnimator = ValueAnimator.ofFloat(0f, 100f)
             .apply {
-                duration = 0
+                duration = 1500
                 addUpdateListener {
                     customView.progress = it.animatedValue as Float
                     customView.invalidate()

@@ -2,6 +2,7 @@ package com.github.zharovvv.animationsandbox
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.loader.app.LoaderManager
 import com.github.zharovvv.animationsandbox.fragments.MainFragment
 
 class MainActivity : AppCompatActivity() {
@@ -20,5 +21,9 @@ class MainActivity : AppCompatActivity() {
             mainFragment =
                 supportFragmentManager.findFragmentByTag("main_fragment") as MainFragment
         }
+        //Не относится к анимации.
+        //LoaderSandbox
+        LoaderManager.getInstance(this)
+            .initLoader(R.id.stub_loader_id, Bundle.EMPTY, StubLoaderCallback(this))
     }
 }
